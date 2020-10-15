@@ -26,7 +26,7 @@ local function DrawMapIcon(parent, mapname)
     pan:SetMaterial(mat)
   else
     --first check if the github has the icon
-    local githuburl = "https://kklluuttzz.github.io/tropical-map-icons/" .. mapname .. ".jpg"
+    local githuburl = "https://raw.githubusercontent.com/kklluuttzz/tropical-data/master/" .. mapname .. ".jpg"
     http.Fetch(githuburl,function(body, size, headers, code)
       if code < 400 then
         print("found icon for " .. mapname .. " on the github")
@@ -49,8 +49,6 @@ local function DrawMapIcon(parent, mapname)
           else
             --couldn't find it anywhere, give it a boring thumb
             print("couldnt find an icon for " .. mapname .. ". gave boring thumb")
-            local mat = Material("materials/tropical/nomapthumb.jpg")
-            pan:SetMaterial(mat)
           end
         end)
       end
@@ -201,7 +199,6 @@ function GM:MakeMapViewer(topText, ClickCallBack)
     base.VoteFrac = 0
     base.Paint = function(self, w, h)
       local split = w * self.VoteFrac
-      print(split)
       local hovered = self.Button:IsHovered()
       surface.SetDrawColor(MAP_COLORS[MAP_COLORS_VOTE + (hovered and MAP_COLORS_HOVERED or 0)])
       surface.DrawRect(0, 0, split, h)

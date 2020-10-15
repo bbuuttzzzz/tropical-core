@@ -6,14 +6,7 @@ util.AddNetworkString("trop_votemap_update")
 util.AddNetworkString("trop_forcemap_open")
 util.AddNetworkString("trop_map_table_init")
 
---overwritten default zs function
-local function loadTropicalMap()
-  GAMEMODE:TropicalLoadNextMap()
-  return true
-end
-hook.Add("LoadNextMap", "TropicalLoadNextMap", TropicalLoadNextMap)
 function GM:TropicalLoadNextMap()
-  print("gonna start mapvote")
   self.MapVoteInProgress = true
   self.MapVotes = {}
 
@@ -98,7 +91,6 @@ function GM:LoadMapList()
     return {}
   end
 
-  print(contents)
   contents = Deserialize(contents)
   if not contents then
     print("error: failed to deserialize")
