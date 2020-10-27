@@ -5,6 +5,7 @@
 surface.CreateFont("tcore_smallest", {font = "Trebuchet24", size = 28, weight = 1000})
 surface.CreateFont("tcore_small", {font = "Trebuchet24", size = 36, weight = 1000})
 
+-- This is a noxZS function
 -- EasyLabel - Creates a panel with specified text on it
 --- parent: the panel to parent the label to
 --- text: a string to put on the label
@@ -26,6 +27,7 @@ function EasyLabel(parent, text, font, textcolor)
 	return dpanel
 end
 
+-- This is a noxZS function
 function EasyButton(parent, text, xpadding, ypadding)
 	local dpanel = vgui.Create("DButton", parent)
 	if textcolor then

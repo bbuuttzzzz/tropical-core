@@ -1,3 +1,5 @@
+-- this is noxZS stuff
+
 local BGRID = {}
 
 function BGRID:Init()
