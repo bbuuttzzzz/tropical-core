@@ -34,6 +34,7 @@ function GM:PostLoadNextMap()
   for map, num in pairs(votes) do
     if num > winnerVotes then
       winner = map
+      winnerVotes = num
     end
   end
 
@@ -75,6 +76,15 @@ function GM:CountVotesForMaps()
   end
 
   return counts
+end
+
+function GM:LogVotes()
+    local votes = self:CountVotesForMaps()
+    print("# MAP VOTES ####################")
+    for map, count in pairs(votes) do
+        print(map .. " with " .. count .. " votes")
+    end
+    print("################################")
 end
 
 --don't really have a reason to make a bunch of changes to the map list
