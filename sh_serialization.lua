@@ -2,6 +2,9 @@
 -- Written by one of the nox kids
 -- Mapvote uses this to read/write map list
 
+-- im including this here because its included in both cl_init and init.
+include("TExtend.lua")
+
 if SRL_VER and SRL_VER > 3 then return end
 SRL_VER = 3
 
