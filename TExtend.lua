@@ -89,14 +89,13 @@ if SERVER then
     end
     
     hook.Add("DoPlayerDeath", "RemoveEphemeralTstatuses", function(ply)
-        ply:RemoveEphemeralStatuses()
+        ply:RemoveEphemeralTStatuses()
     end)
 
 end
 
 if CLIENT then
 
-    --don't ask questions...
     function TAccessorFuncDT(tab, membername, type, id)
         local emeta = FindMetaTable("Entity")
         local setter = emeta["SetDT"..type]

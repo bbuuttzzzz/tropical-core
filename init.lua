@@ -4,7 +4,7 @@
 AddCSLuaFile("cl_gui.lua")
 AddCSLuaFile("cl_init.lua")
 AddCSLuaFile("sh_serialization.lua")
-
+AddCSLuaFile("TExtend.lua")
 -- panel
 AddCSLuaFile("panel/pBrickGrid.lua")
 
@@ -17,7 +17,7 @@ AddCSLuaFile("mapvote/pmapvote.lua")
 -- Serverside Include
 --###################
 include("sh_serialization.lua")
-
+include("TExtend.lua")
 -- mapvote
 include("mapvote/sh_mapvote.lua")
 include("mapvote/sv_mapvote.lua")
