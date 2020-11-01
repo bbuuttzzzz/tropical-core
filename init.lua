@@ -18,9 +18,13 @@ AddCSLuaFile("mapvote/pmapvote.lua")
 --###################
 include("sh_serialization.lua")
 
+
 -- mapvote
 include("mapvote/sh_mapvote.lua")
 include("mapvote/sv_mapvote.lua")
+
+-- Tstatus
+include("Tstatus/Tstatus_loader.lua")
 
 -- When the player passed the postentity step, call PlayerReady
 concommand.Add("initpostentity", function(sender, command, arguments)
