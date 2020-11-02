@@ -21,6 +21,8 @@ include("TExtend.lua")
 -- mapvote
 include("mapvote/sh_mapvote.lua")
 include("mapvote/sv_mapvote.lua")
+-- rtd
+include("rtd/sv_rtd.lua")
 
 -- When the player passed the postentity step, call PlayerReady
 concommand.Add("initpostentity", function(sender, command, arguments)
