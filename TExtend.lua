@@ -1,6 +1,20 @@
 --This file holds all the shit that is necessary for Tstatuses to work properly without overwriting existing gamemode functions.
+local GM = GM or GAMEMODE
+local game = engine.ActiveGamemode()
+local foldername = GM.FolderName
+local path = foldername.."/gamemode/tropical-core/gamemodehooksandvars/"
+
+if game == foldername then
+    if file.Exists(path..foldername.."_hooks.lua","LUA") and file.Exists(path..foldername.."_vars.lua","LUA") then
+        AddCSLuaFile(path..foldername.."_vars.lua")
+        AddCSLuaFile(path..foldername.."_hooks.lua")
+        include(path..foldername.."_vars.lua")
+        include(path..foldername.."_hooks.lua")
+    end
+end
 
 local meta = FindMetaTable("Player")
+
 
 if SERVER then
 
@@ -19,7 +33,7 @@ if SERVER then
     end
 
     function meta:RemoveEphemeralTStatuses()
-        for _, status in pairs(ents.FindByClass("Tstatus_*")) do
+        for _, status in pairs(ents.FindByClass("tstatus_*")) do
             if status.Ephemeral and status:IsValid() and status:GetOwner() == self then
                 status:Remove()
             end
@@ -28,13 +42,13 @@ if SERVER then
 
     function meta:RemoveAllTStatus(bSilent, bInstant)
         if bInstant then
-            for _, ent in pairs(ents.FindByClass("Tstatus_*")) do
+            for _, ent in pairs(ents.FindByClass("tstatus_*")) do
                 if not ent.NoRemoveOnDeath and ent:GetOwner() == self then
                     ent:Remove()
                 end
             end
         else
-            for _, ent in pairs(ents.FindByClass("Tstatus_*")) do
+            for _, ent in pairs(ents.FindByClass("tstatus_*")) do
                 if not ent.NoRemoveOnDeath and ent:GetOwner() == self then
                     ent.SilentRemove = bSilent
                     ent:SetDie()
@@ -45,8 +59,8 @@ if SERVER then
     
     function meta:RemoveTStatus(sType, bSilent, bInstant, sExclude)
         local removed
-        for _, ent in pairs(ents.FindByClass("Tstatus_"..sType)) do
-            if ent:GetOwner() == self and not (sExclude and ent:GetClass() == "Tstatus_"..sExclude) then
+        for _, ent in pairs(ents.FindByClass("tstatus_"..sType)) do
+            if ent:GetOwner() == self and not (sExclude and ent:GetClass() == "tstatus_"..sExclude) then
                 if bInstant then
                     ent:Remove()
                 else
@@ -60,7 +74,7 @@ if SERVER then
     end
 
     function meta:GetTStatus(sType)
-        local ent = self["Tstatus_"..sType]
+        local ent = self["tstatus_"..sType]
         if ent and ent:IsValid() and ent:GetOwner() == self then return ent end
     end 
 
@@ -73,7 +87,7 @@ if SERVER then
             cur:SetPlayer(self, true)
             return cur
         else
-            local ent = ents.Create("Tstatus_"..sType)
+            local ent = ents.Create("tstatus_"..sType)
             if ent:IsValid() then
                 ent:Spawn()
                 if giver then
@@ -87,7 +101,7 @@ if SERVER then
             end
         end
     end
-    
+
     hook.Add("DoPlayerDeath", "RemoveEphemeralTstatuses", function(ply)
         ply:RemoveEphemeralTStatuses()
     end)
@@ -117,7 +131,7 @@ if CLIENT then
     end
 
     function meta:GetTStatus(sType)
-        local ent = self["Tstatus_"..sType]
+        local ent = self["tstatus_"..sType]
         if ent and ent:GetOwner() == self then return ent end
     end
 
