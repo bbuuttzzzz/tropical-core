@@ -107,6 +107,10 @@ function GM:LoadMapList()
     return {}
   end
 
+  for name, table in pairs(contents) do
+    table.mapExists = file.Exists("maps/" .. name .. ".bsp", "GAME")
+  end
+
   return contents
 end
 

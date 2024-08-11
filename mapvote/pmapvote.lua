@@ -191,6 +191,7 @@ function GM:MakeMapViewer(topText, ClickCallBack)
   frame.MapEntries = mapEntries
   print(self.MapTable)
   for mapname, mapTab in pairs(self.MapTable) do
+    if not mapTab.mapExists then continue end
     --draw the background
     local base = vgui.Create("DPanel")
     base:SetSize( mapx * scale, mapy * scale )
